@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 /*
@@ -13,6 +13,10 @@ use App\Models\User;
 |
 */
 
+Route::get('/role',[RoleController::class,'create'])->name('role');
+Route::get('/role-list',[RoleController::class,'index'])->name('roles.index');
+Route::get('/show-role/{id}',[RoleController::class,'show'])->name('roles.show');
+Route::post('/store',[RoleController::class,'store'])->name('roles.store');
 Route::get('/', function () {
     return view('welcome');
 });
