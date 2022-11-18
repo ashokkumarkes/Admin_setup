@@ -12,6 +12,7 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/permission',[PermissionController::class,'index'])->name('permission.index');
 Route::get('/add-permission',[PermissionController::class,'create'])->name('add-permission');
 Route::post('/store-permission',[PermissionController::class,'store'])->name('permission.store');
@@ -25,10 +26,12 @@ Route::post('/store',[RoleController::class,'store'])->name('roles.store');
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/user-profile', function () {
     $data = auth()->user();
     return view('f_pages.profile',compact('data'));
 })->middleware(['auth', 'verified'])->name('user-profile');
+
 Route::get('/blank', function () {
     return view('f_pages.blank');
 })->middleware(['auth', 'verified'])->name('blank');

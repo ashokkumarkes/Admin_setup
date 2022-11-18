@@ -1,6 +1,4 @@
 @extends('layouts.app')
-
-
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -47,5 +45,5 @@
     </tr>
     @endforeach
 </table>
-{!! $roles->render() !!}
+{!! $roles->links() !!}
 @endsection
