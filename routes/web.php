@@ -13,15 +13,15 @@ use App\Models\User;
 |
 */
 
-Route::get('/permission',[PermissionController::class,'index'])->name('permission.index');
-Route::get('/add-permission',[PermissionController::class,'create'])->name('add-permission');
-Route::post('/store-permission',[PermissionController::class,'store'])->name('permission.store');
+Route::get('/permission',[PermissionController::class,'index'])->name('permission.index')->middleware(['auth', 'verified']);
+Route::get('/add-permission',[PermissionController::class,'create'])->name('add-permission')->middleware(['auth', 'verified']);
+Route::post('/store-permission',[PermissionController::class,'store'])->name('permission.store')->middleware(['auth', 'verified']);
 
-Route::get('/role',[RoleController::class,'create'])->name('role');
-Route::get('/role-list',[RoleController::class,'index'])->name('roles.index');
-Route::get('/show-role/{id}',[RoleController::class,'show'])->name('roles.show');
-Route::get('/edit/{id}',[RoleController::class,'show'])->name('roles.edit');
-Route::post('/store',[RoleController::class,'store'])->name('roles.store');
+Route::get('/role',[RoleController::class,'create'])->name('role')->middleware(['auth', 'verified']);
+Route::get('/role-list',[RoleController::class,'index'])->name('roles.index')->middleware(['auth', 'verified']);
+Route::get('/show-role/{id}',[RoleController::class,'show'])->name('roles.show')->middleware(['auth', 'verified']);
+Route::get('/edit/{id}',[RoleController::class,'show'])->name('roles.edit')->middleware(['auth', 'verified']);
+Route::post('/store',[RoleController::class,'store'])->name('roles.store')->middleware(['auth', 'verified']);
 
 Route::get('/', function () {
     return view('welcome');
