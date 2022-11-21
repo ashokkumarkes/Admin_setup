@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Permission;
@@ -16,8 +16,17 @@ class RoleController extends Controller
     }
     public function create()
     {
-        $permission = Permission::get();
-        return view('roles.create',compact('permission'));
+        if (Gate::allows('isManager')) {
+
+            $permission = Permission::get();
+            return view('roles.create',compact('permission'));
+    
+        } else {
+    
+            dd('You are not Manager');
+    
+        }
+        
     }
     public function store(Request $request)
     {
