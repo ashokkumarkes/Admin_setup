@@ -81,7 +81,8 @@
         <div class="bg-white py-2 collapse-inner rounded">
         @can('isAdmin')
         <a class="collapse-item" href="{{route('role')}}">Add role</a>
-        <a class="collapse-item" href="{{route('add-permission')}}">Add permission</a>
+        <a class="collapse-item" href="{{route('add-permission')}}">Add permission</a> 
+        <a class="collapse-item" href="{{route('createCategory')}}">Add category</a>
         @elsecan('isManager')
         <h6 class="collapse-header">Login Screens:</h6>
 

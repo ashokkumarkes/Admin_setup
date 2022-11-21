@@ -2,17 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+Route::any('category/create', [CategoryController::class, 'createCategory'])->middleware(['auth', 'verified'])->name('createCategory');
 Route::get('/permission',[PermissionController::class,'index'])->name('permission.index')->middleware(['auth', 'verified']);
 Route::get('/add-permission',[PermissionController::class,'create'])->name('add-permission')->middleware(['auth', 'verified']);
 Route::post('/store-permission',[PermissionController::class,'store'])->name('permission.store')->middleware(['auth', 'verified']);
