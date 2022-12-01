@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
+// use validator;
 class RegisteredUserController extends Controller
 {
     /**
@@ -31,6 +31,14 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    // protected function validator(Request $request)
+    // {
+    //     return Validator::make($request->all(), [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:'.$table],
+    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
+    //     ]);
+    // }
     public function store(Request $request)
     {
         $request->validate([
@@ -38,16 +46,37 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        
+        // $this->validator($request->all())->validate();
+        // $user = $this->create($request->all());
+        // event(new Registered($user));
+        // Auth::login($user);
+        // $this->guard()->login($user);
+        
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        // UserVerification::generate($user);
+        // UserVerification::send($user, 'My Custom E-mail Subject');
+        // return $this->registered($request, $user)
+        //     ?: redirect($this->redirectPath());
         event(new Registered($user));
 
         Auth::login($user);
+
+
+
+
+       
+
+
+
+
+
+
 
         return redirect(RouteServiceProvider::HOME);
     }

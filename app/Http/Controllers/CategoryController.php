@@ -8,7 +8,7 @@ class CategoryController extends Controller
 {
     public function createCategory(Request $request)
     {
-        $categories = Category::where('parent_id', null)->orderby('name', 'asc')->get();
+        $categories = Category::where('parent_id', null)->orderby('name', 'asc')->get(); 
         if($request->method()=='GET')
         {
             return view('category.create-category', compact('categories'));
